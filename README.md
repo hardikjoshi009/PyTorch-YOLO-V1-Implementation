@@ -8,6 +8,7 @@ This project implements the YOLO (You Only Look Once) V1 object detection algori
 - [Model Architecture](#model-architecture)
 - [YOLO V1 Algorithm](#yolo-v1-algorithm)
 - [Results](#results)
+- [Findings and Insights](#findings-and-insights)
 
 ## Overview
 
@@ -45,3 +46,30 @@ Key components include:
 ## Results
 
 The model was successfully trained on the PascalVOC dataset for 5 epochs, achieving a mean Average Precision (mAP) of 54.62%.
+
+## Findings and Insights
+
+### Findings
+1. **Performance**:  
+   - Achieved a mean Average Precision (mAP) of **54.62%**, which is consistent with the expected performance of YOLO V1 on the PascalVOC dataset.  
+   - The model performed well on larger objects but struggled with small objects due to the limited spatial resolution of grid cells.
+
+2. **Training Challenges**:  
+   - Balancing the loss terms for bounding box regression, class probabilities, and confidence scores was critical for stable training.  
+   - Overfitting was observed after 5 epochs, necessitating early stopping or regularization techniques.  
+
+3. **Grid Cell Limitations**:  
+   - Objects spanning multiple grid cells were sometimes misclassified or split into multiple detections, a known limitation of YOLO V1.  
+
+### Insights
+1. **Impact of Data Augmentation**:  
+   - Techniques like random cropping, flipping, and color jittering significantly improved model generalization to unseen data.  
+
+2. **Role of Bounding Box Priors**:  
+   - Initializing bounding box priors closer to the dataset distribution helped the model converge faster.  
+
+3. **Small Object Detection**:  
+   - The fixed grid size limits the detection performance for small objects, highlighting the need for multi-scale feature extraction in later YOLO versions.  
+
+4. **Real-Time Suitability**:  
+   - The lightweight architecture of YOLO V1 ensures real-time inference capability, making it ideal for applications requiring fast detection.
